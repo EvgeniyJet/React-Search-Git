@@ -1,4 +1,4 @@
-import { getUsersAC, addUsersAC } from "../store/reducer";
+import { getUsersAC, addUsersAC, getUserDetails } from "../store/reducer";
 const USER_PER_PAGE = 20;
 const URL = 'https://api.github.com/';
 
@@ -34,19 +34,23 @@ export const fetchAddUsersAC = ({ value, page, order }) => {
 	}
 }
 
-export const fetchPopupUserAC = ({ login }) => {
-
+export const fetchPopupUserAC = ({ login, avatar_url }) => {
 	return (dispatch) => {
 		const urls = [
 			`${URL}users/${login}/following`,
 			`${URL}users/${login}/followers`,
 			`${URL}users/${login}/repos`,
 		];
-		urls.map(url => fetch(url, {
+		const requests = urls.map(url => fetch(url, {
 			method: 'GET',
 			headers: { "Content-Type": "application/json" },
 		}))
-			.then(resp => resp.json())
-			.then(json => { dispatch(addUsersAC(json)) });
+
+		return Promise.all(requests)
+			.then(responses => Promise.all((responses.map(r => r.json()))))
+			.then(json => {
+				const [following, followers, repos] = json;
+				dispatch(getUserDetails({ login, avatar_url, following, followers, repos }))
+			})
 	}
 }

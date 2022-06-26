@@ -73,11 +73,30 @@ body {
 	font-weight: 600;
 }
 
+h2 {
+	color: var(--color-dark);
+}
+
 .user-list {
-	display: flex;
-	flex-wrap: wrap;
+	list-style-type: none;
 	margin: 0;
 	padding: 0;
+}
+
+.user-list li {
+	margin-left: 0;
+	color: var(--color-dark);
+	display: flex;
+	justify-content: space-between;
+}
+
+.user-list li span {
+	font-size: 1.2em;
+	color: var(--color-brand)
+}
+
+.user-list li+li {
+	margin-top: 10px;
 }
 
 .user-list-item {
@@ -96,8 +115,8 @@ body {
 .users {
 	list-style-type: none;
 	display: grid;
-	grid-template-columns: repeat(auto-fill, 150px);
-
+	grid-template-columns: repeat(auto-fill, minmax(150px, 250px));
+	justify-content: center;
 	grid-gap: 30px;
 }
 
@@ -134,6 +153,7 @@ input {
 	width: 100%;
 	background: var(--color-light);
 	padding: 0;
+	padding-left: 5px;
 	border-radius: var(--rad);
 	appearance: none;
 	transition: all var(--dur) var(--bez);
@@ -152,6 +172,7 @@ input {
 	background: var(--color-brand);
 	border-radius: 0 var(--rad) var(--rad) 0;
 	font-size: 15px;
+
 }
 
 input:not(:placeholder-shown) {
@@ -169,7 +190,7 @@ input:not(:placeholder-shown)+.submit {
 	align-items: flex-start;
 	background-color: rgba(15, 15, 15, 0.9);
 	z-index: 99;
-	position: absolute;
+	position: fixed;
 	top: 0;
 	right: 0;
 	left: 0;
@@ -200,7 +221,6 @@ input:not(:placeholder-shown)+.submit {
 	top: -50px;
 	right: -50px;
 	background: var(--color-close);
-	padding: 5px;
 	border-radius: 50%;
 	width: 40px;
 	height: 40px;
@@ -208,6 +228,7 @@ input:not(:placeholder-shown)+.submit {
 	justify-content: center;
 	align-items: center;
 	font-size: 25px;
+	line-height: 24px;
 }
 
 .order {
