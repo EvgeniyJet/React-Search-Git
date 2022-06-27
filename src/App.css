@@ -253,7 +253,7 @@ input:not(:placeholder-shown)+.submit {
 
 .sort {
 	display: inline-block;
-	margin-left: 85px;
+	margin-left: 30px;
 	width: calc(var(--btn-width) * 2);
 
 }

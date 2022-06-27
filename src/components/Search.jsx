@@ -46,7 +46,7 @@ const Profile = () => {
 			<span className='count'>Найдено: {users.total_count ? users.total_count : 0}</span>
 			<button className='submit' onClick={handleSearch}>Поиск</button>
 			<button className="btn sort" onClick={handleChangeSort}>
-				Сортировка по {sortOrder === 'desc' ? 'по возрастанию' : 'по убыванию'}
+				Сортировка количества репозиториев {sortOrder === 'desc' ? 'по убыванию' : 'по возрастанию'}
 			</button>
 
 			<div className="list">
